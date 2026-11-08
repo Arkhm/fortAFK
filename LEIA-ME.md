@@ -8,7 +8,7 @@ App estilo TinyTask: grava suas ações e usa um bot para repetir partidas de Ba
 
 - Windows 10 ou 11.
 - Python 3.10+ para gerar o `.exe` ou rodar pelo Python; o `.exe` pronto dispensa Python.
-- Fortnite em **INGLÊS**, no monitor principal.
+- Fortnite em qualquer idioma, no monitor principal. Capture as imagens no mesmo idioma do jogo; os textos deste guia estão em inglês, então procure o equivalente.
 - Modo de tela **Windowed Fullscreen** (Tela cheia em janela).
 
 ## Gerar o .exe

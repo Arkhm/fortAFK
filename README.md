@@ -21,7 +21,7 @@ Gravador de macros estilo TinyTask para Fortnite no Windows, com reconhecimento 
 ## Requisitos
 
 - Windows 10 ou 11
-- Fortnite em **inglês**, no modo **Windowed Fullscreen** (Tela cheia em janela) e no monitor principal
+- Fortnite em qualquer idioma, no modo **Windowed Fullscreen** (Tela cheia em janela) e no monitor principal
 - [Python 3.10 ou mais novo](https://www.python.org/downloads/), só se você for gerar o `.exe` ou rodar pelo código. O `.exe` pronto não precisa de Python. Na instalação, marque **Add python.exe to PATH** e mantenha **tcl/tk and IDLE**.
 
 ## Instalação
@@ -49,7 +49,7 @@ O antivírus ou o SmartScreen podem desconfiar do `.exe`, porque ele não é ass
 
 ### 1. Capture as imagens
 
-Cada pessoa precisa capturar as próprias imagens, porque elas dependem da resolução e da escala do Windows.
+Cada pessoa precisa capturar as próprias imagens, porque elas dependem da resolução, da escala do Windows e do idioma do jogo. Os textos da tabela abaixo estão em inglês: se o seu jogo estiver em outro idioma, capture o equivalente.
 
 Abra **⛶ Imagens**, deixe o jogo na tela certa e clique em **Capturar**. Você tem 3 segundos, depois a tela escurece e é só arrastar um retângulo. Use **Testar** para conferir cada imagem.
 
