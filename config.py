@@ -47,6 +47,7 @@ PADRAO = {
     "max_partidas": 0,          # 0 = infinito
     "max_minutos": 0,           # timer: para depois de X minutos (0 = sem limite)
     "tempo_terminar_partida": True,  # ao fim do timer: termina a partida e para no lobby
+    "gravar_camera": True,      # grava o movimento do mouse (câmera) nas novas gravações
     "nao_roubar_foco": True,    # a barra não tira o foco do jogo ao ser clicada
     "gravacoes_desativadas": [],
     "posicao_janela": None,     # [x, y] da barra principal

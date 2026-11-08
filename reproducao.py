@@ -124,7 +124,10 @@ class Reprodutor:
         with self._trava:
             if self._parado(parar):        # parar() chegou: não pressiona mais nada
                 return
-            if tipo == "kd" and reproduzivel(valor):
+            if tipo == "mv":
+                # movimento relativo: é o que o jogo lê para girar a câmera
+                pydirectinput.moveRel(valor[0], valor[1], relative=True, _pause=False)
+            elif tipo == "kd" and reproduzivel(valor):
                 pydirectinput.keyDown(valor)
                 self.teclas.add(valor)
             elif tipo == "ku" and valor in self.teclas:
@@ -176,8 +179,14 @@ class Reprodutor:
             resta = fim - time.perf_counter()
             if resta <= 0:
                 return self._parado(parar), em_pausa
-            if parar.wait(min(resta, 0.05)):
-                return True, em_pausa
+            if resta > 0.03:
+                if parar.wait(min(resta - 0.02, 0.05)):
+                    return True, em_pausa
+            else:
+                # o wait() do Windows só acorda a cada ~15 ms, o que deixaria a câmera truncada
+                time.sleep(min(resta, 0.002))
+                if parar.is_set():
+                    return True, em_pausa
 
     def _tocar(self, eventos, parar):
         """Reproduz respeitando o tempo de cada evento. Devolve False se foi interrompida."""

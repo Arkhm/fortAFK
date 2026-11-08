@@ -62,7 +62,7 @@ Faça recortes pequenos, sem partes que mudam, como fundo animado ou números. D
 
 Aperte **F8 no momento em que a imagem do `onibus.png` aparecer** (ao entrar no ônibus). Na reprodução, o bot espera essa mesma imagem para começar, então os tempos batem. Jogue e aperte **F8** de novo para parar. Sem `onibus.png`, a reprodução começa logo após o PLAY; nesse caso, grave a partir do clique em PLAY.
 
-A gravação guarda teclado e cliques com o tempo exato; **não grava movimento do mouse/câmera**. Você pode criar várias gravações. O bot sorteia entre as ativas, marcadas no checkbox do gerenciador **☰ Gravações**. O botão **Testar** reproduz uma vez após **3 segundos**.
+A gravação guarda teclado, cliques e **movimento da câmera** com o tempo exato (dá para desligar a câmera em ⚙ Config). Reproduza com a mesma sensibilidade no jogo e o mesmo DPI do mouse da hora de gravar, senão os giros saem maiores ou menores. Você pode criar várias gravações. O bot sorteia entre as ativas, marcadas no checkbox do gerenciador **☰ Gravações**. O botão **Testar** reproduz uma vez após **3 segundos**.
 
 ## Rodar
 
@@ -100,6 +100,7 @@ Se o bot for iniciado enquanto você está assistindo um aliado, ele já entende
 | Parar depois de X partidas | 0 = infinito |
 | Timer: parar depois de X minutos | 0 = sem limite |
 | Ao fim do timer: terminar a partida e parar no lobby | Ligado |
+| Gravar o movimento da câmera | Ligado |
 | Não roubar foco do jogo | Ligado |
 
 As mudanças valem no próximo **Iniciar bot**.

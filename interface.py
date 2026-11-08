@@ -408,7 +408,7 @@ class App(tk.Tk):
         if self.bot.rodando or self.reprodutor.rodando:
             log("Pare o bot / o teste antes de gravar.")
             return
-        self.gravador.iniciar(self.ignoradas())
+        self.gravador.iniciar(self.ignoradas(), camera=bool(self.cfg["gravar_camera"]))
         self.estado = "Gravando"
         log(f"Gravando... ({self.cfg['tecla_gravar'].upper()} para parar)")
 
@@ -894,14 +894,14 @@ class JanelaConfig(JanelaBase):
         ("lobby_max", "Espera no lobby antes do PLAY - máximo (s)", float),
         ("poll_lobby", "Intervalo procurando o PLAY (s)", float),
         ("espera_onibus_max", "Tempo máximo esperando o ônibus (s)", float),
-        ("intervalo_espectador", "Checagem de \"SPECTATING\" na partida (s)", float),
+        ("intervalo_espectador", "Checagem de tela na partida (fim / SPECTATING) (s)", float),
         ("confianca", "Confiança do reconhecimento (0.5 a 1.0)", float),
         ("max_partidas", "Parar depois de X partidas (0 = infinito)", int),
         ("max_minutos", "Timer: parar depois de X minutos (0 = sem limite)", int),
     ]
 
     def __init__(self, app):
-        super().__init__(app, "Configurações", (500, 590))
+        super().__init__(app, "Configurações", (500, 620))
         self.vars = {}
         f = tk.Frame(self, bg=COR["fundo"])
         f.pack(fill="both", expand=True, padx=12, pady=10)
@@ -936,6 +936,10 @@ class JanelaConfig(JanelaBase):
         self.var_terminar = tk.BooleanVar(value=bool(app.cfg["tempo_terminar_partida"]))
         ttk.Checkbutton(f, text="Ao fim do timer: terminar a partida e parar no lobby (senão, para na hora)",
                         variable=self.var_terminar).grid(row=lin, column=0, columnspan=3, sticky="w", pady=2)
+        lin += 1
+        self.var_camera = tk.BooleanVar(value=bool(app.cfg["gravar_camera"]))
+        ttk.Checkbutton(f, text="Gravar o movimento da câmera nas novas gravações",
+                        variable=self.var_camera).grid(row=lin, column=0, columnspan=3, sticky="w", pady=2)
         lin += 1
         self.var_foco = tk.BooleanVar(value=bool(app.cfg["nao_roubar_foco"]))
         ttk.Checkbutton(f, text="Barra não rouba o foco do jogo ao ser clicada",
@@ -972,6 +976,7 @@ class JanelaConfig(JanelaBase):
         self.vars["teclas_ignoradas"].set(", ".join(config.PADRAO["teclas_ignoradas"]))
         self.var_modo.set(config.PADRAO["verificar_modo"])
         self.var_terminar.set(config.PADRAO["tempo_terminar_partida"])
+        self.var_camera.set(config.PADRAO["gravar_camera"])
         self.var_foco.set(config.PADRAO["nao_roubar_foco"])
 
     def salvar(self):
@@ -1026,6 +1031,7 @@ class JanelaConfig(JanelaBase):
         cfg["teclas_ignoradas"] = ignoradas
         cfg["verificar_modo"] = bool(self.var_modo.get())
         cfg["tempo_terminar_partida"] = bool(self.var_terminar.get())
+        cfg["gravar_camera"] = bool(self.var_camera.get())
         cfg["nao_roubar_foco"] = bool(self.var_foco.get())
         config.salvar(cfg)
         self.vars["teclas_ignoradas"].set(", ".join(ignoradas))

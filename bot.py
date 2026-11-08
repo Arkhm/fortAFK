@@ -122,10 +122,10 @@ class Bot:
                 return "parar"
 
     def _vigiar_partida(self, segundos, rotulo):
-        """Espera até a próxima verificação, mas a cada `intervalo_espectador` s confere
-        a tela de espectador (imagens/espectando.png):
-          - viu SPECTATING: pausa a gravação (você morreu e assiste um aliado);
-          - pausado e apareceu a tela final: encerra a espera na hora (verificação já);
+        """Espera até a próxima verificação, mas a cada `intervalo_espectador` s confere a tela:
+          - apareceu a tela final ou o lobby: encerra a espera na hora. Com a câmera na
+            gravação, o cursor andaria pelos botões dessa tela enquanto os cliques tocam;
+          - viu SPECTATING (imagens/espectando.png): pausa a gravação (você morreu e assiste um aliado);
           - pausado e a tela de espectador sumiu (2 vezes seguidas, sem tela final):
             você foi revivido -> retoma a gravação de onde parou.
         Devolve True se mandaram parar o bot."""
@@ -142,17 +142,17 @@ class Bot:
                 self._estado(f"Espectando aliados · gravação pausada (verifica em {math.ceil(resta)}s)")
             else:
                 self._estado(rotulo.format(math.ceil(resta)))
-            if tem_imagem and agora >= proxima:
+            if agora >= proxima:
                 proxima = agora + self.cfg["intervalo_espectador"]
-                if self._achar("espectando.png"):
+                if self._squad_eliminado() or self._no_lobby():
+                    return self._parar.is_set()          # tela final/lobby: verifica agora
+                if tem_imagem and self._achar("espectando.png"):
                     sumiu = 0
                     if not self.espectando:
                         self.espectando = True
                         self.reprodutor.pausar()
                         log("Espectando aliados - gravação pausada")
-                elif self.espectando:
-                    if self._squad_eliminado() or self._achar("play.png"):
-                        return self._parar.is_set()      # tela final/lobby: verifica agora
+                elif tem_imagem and self.espectando:
                     sumiu += 1
                     if sumiu >= 2:
                         self.espectando = False

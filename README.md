@@ -10,7 +10,7 @@ Gravador de macros estilo TinyTask para Fortnite no Windows, com reconhecimento 
 ## O que ele faz
 
 - **Barra pequena, sempre por cima do jogo**, com atalhos globais: F8 grava e F9 para tudo.
-- **Grava teclado e cliques** com o tempo exato de cada evento. O movimento da câmera não é gravado.
+- **Grava teclado, cliques e câmera** com o tempo exato de cada evento.
 - **Começa a gravação no ônibus**, não importa quanto tempo a fila e o carregamento demorem.
 - **Pausa quando você morre** e está assistindo um aliado. Se você for revivido, continua de onde parou.
 - **Volta ao lobby sozinho** quando o squad inteiro é eliminado e começa outra partida.
@@ -84,7 +84,8 @@ Ficam em **⚙ Config** e valem a partir do próximo início do bot.
 | Espera no lobby antes do PLAY | 5 a 20 s |
 | Intervalo procurando o PLAY | 5 s |
 | Tempo máximo esperando o ônibus | 600 s |
-| Checagem de SPECTATING | 5 s |
+| Checagem de tela na partida (fim e SPECTATING) | 5 s |
+| Gravar o movimento da câmera | Ligado |
 | Confiança do reconhecimento | 0.8 |
 | Verificar o modo antes do PLAY | Ligado |
 | Parar depois de X partidas | 0 (sem limite) |
@@ -108,7 +109,8 @@ Ficam em **⚙ Config** e valem a partir do próximo início do bot.
 ## Limitações
 
 - Se o bot for iniciado com você vivo no meio de uma partida, ele não tem como saber disso e fica procurando o PLAY até você morrer.
-- A sensibilidade não importa, porque a câmera não é gravada: o personagem anda, pula e atira olhando sempre para a mesma direção.
+- A câmera repete os movimentos da gravação, mas não mira em ninguém. Use a mesma sensibilidade no jogo e o mesmo DPI do mouse da hora de gravar, senão os giros saem maiores ou menores.
+- Gravações feitas antes da opção de câmera continuam funcionando, só que sem o movimento.
 - Teclas do teclado numérico e teclas próprias do ABNT2, como ç e acentos, não são reproduzidas.
 
 Mais detalhes no [LEIA-ME.md](LEIA-ME.md).
