@@ -1,0 +1,7 @@
+pyautogui>=0.9.54
+pyscreeze>=0.1.30
+pydirectinput>=1.0.4
+pynput>=1.7.7
+opencv-python>=4.8
+numpy>=1.26
+pillow>=10.0

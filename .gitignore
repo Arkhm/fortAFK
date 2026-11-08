@@ -1,0 +1,14 @@
+# Gerados pelo build
+build/
+dist/
+*.spec
+icone.ico
+__pycache__/
+
+# Dados pessoais de cada usuário
+config.json
+config.json.corrompido
+log.txt
+log_antigo.txt
+imagens/
+gravacoes/
